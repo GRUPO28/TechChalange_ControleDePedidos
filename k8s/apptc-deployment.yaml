@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: apptc-deployment
-        image: victorgduarte/tc-controle-pedidos:v1
+        image: grupo28/tc-controle-pedidos:latest
         ports:
         - containerPort: 5187
         envFrom:
