@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+defaults:
+  run:
+    working-directory: ./k8s
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -22,11 +26,7 @@ jobs:
       - name: Set kubeconfig for Amazon EKS
         run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
 
-      - name: List files in k8s directory
-        run: ls -la k8s
-
-      - name: Set execute permission on script
-        run: chmod +x k8s/apptc-apply.sh
-
-      - name: Deploy to Amazon EKS
-        run: bash k8s/apptc-apply.sh
+      - name: Deploy to EKS cluster
+        run: |
+          chmod +x apptc-apply.sh
+          bash apptc-apply.sh
