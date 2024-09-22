@@ -19,6 +19,9 @@ jobs:
       - name: Set kubeconfig for Amazon EKS
         run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
 
+      - name: List files in k8s directory
+        run: ls -la k8s
+
       - name: Set execute permission on script
         run: chmod +x k8s/apptc-apply.sh
 
