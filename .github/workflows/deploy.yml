@@ -26,6 +26,14 @@ jobs:
       - name: Set kubeconfig for Amazon EKS
         run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
 
+      - name: Substitute secrets in ConfigMap
+        run: |
+          sed -i "s|\${MONGO_DB_CONNECTION_STRING}|${MONGO_DB_CONNECTION_STRING}|g" apptc-configmap.yaml
+          sed -i "s|\${MERCADO_PAGO_TOKEN}|${MERCADO_PAGO_TOKEN}|g" apptc-configmap.yaml
+        env:
+          MONGO_DB_CONNECTION_STRING: ${{ secrets.MONGO_DB_CONNECTION_STRING }}
+          MERCADO_PAGO_TOKEN: ${{ secrets.MERCADO_PAGO_TOKEN }}
+
       - name: Deploy to EKS cluster
         run: |
           chmod +x apptc-apply.sh
