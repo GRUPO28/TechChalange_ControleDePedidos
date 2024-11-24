@@ -36,7 +36,7 @@ Para acessar a documentação referente ao banco de dados, vá para o repositór
 - [API Reference](https://7soat-g28.apidocumentation.com/reference)
 - [Postman](https://www.postman.com/altimetry-astronomer-96690638/workspace/tech-challenge-7soat)
 
-## 3.1 Rodar o projeto via Docker
+## 3.1 Rodar o projeto via  Docker
 
 1. Faça o fork ou clone do projeto
 
